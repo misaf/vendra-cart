@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Misaf\VendraCart\Filament\Resources\Carts\RelationManagers;
+namespace Misaf\VendraCart\Filament\Clusters\Resources\Carts\RelationManagers;
 
 use Filament\Actions\DeleteAction;
 use Filament\Resources\RelationManagers\RelationManager;

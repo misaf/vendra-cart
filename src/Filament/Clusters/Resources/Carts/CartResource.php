@@ -2,30 +2,34 @@
 
 declare(strict_types=1);
 
-namespace Misaf\VendraCart\Filament\Resources\Carts;
+namespace Misaf\VendraCart\Filament\Clusters\Resources\Carts;
 
 use BackedEnum;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
-use Misaf\VendraCart\Filament\Resources\Carts\Pages\ListCarts;
-use Misaf\VendraCart\Filament\Resources\Carts\Pages\ViewCart;
-use Misaf\VendraCart\Filament\Resources\Carts\RelationManagers\CartItemsRelationManager;
-use Misaf\VendraCart\Filament\Resources\Carts\Schemas\CartForm;
-use Misaf\VendraCart\Filament\Resources\Carts\Tables\CartTable;
+use Illuminate\Support\Number;
+use Misaf\VendraCart\Filament\Clusters\Resources\Carts\Pages\ListCarts;
+use Misaf\VendraCart\Filament\Clusters\Resources\Carts\Pages\ViewCart;
+use Misaf\VendraCart\Filament\Clusters\Resources\Carts\RelationManagers\CartItemsRelationManager;
+use Misaf\VendraCart\Filament\Clusters\Resources\Carts\Schemas\CartForm;
+use Misaf\VendraCart\Filament\Clusters\Resources\Carts\Tables\CartTable;
+use Misaf\VendraCart\Filament\Clusters\Resources\Carts\Widgets\CartOverviewWidget;
 use Misaf\VendraCart\Models\Cart;
-use Misaf\VendraSupport\Filament\Navigation\NavigationGroup;
+use Misaf\VendraSupport\Filament\Clusters\CatalogCluster;
 
 final class CartResource extends Resource
 {
     protected static ?string $model = Cart::class;
 
-    protected static ?int $navigationSort = 3;
-
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedShoppingCart;
 
+    protected static ?int $navigationSort = 3;
+
     protected static ?string $slug = 'carts';
+
+    protected static ?string $cluster = CatalogCluster::class;
 
     public static function getBreadcrumb(): string
     {
@@ -42,9 +46,14 @@ final class CartResource extends Resource
         return __('vendra-cart::navigation.cart');
     }
 
-    public static function getNavigationGroup(): string
+    public static function getNavigationBadge(): string
     {
-        return NavigationGroup::Sales->getLabel();
+        return (string) Number::format(Cart::query()->count());
+    }
+
+    public static function getNavigationBadgeTooltip(): string
+    {
+        return __('vendra-cart::navigation.navigation_badge_tooltip');
     }
 
     public static function getPluralModelLabel(): string
@@ -66,6 +75,13 @@ final class CartResource extends Resource
     {
         return [
             CartItemsRelationManager::class,
+        ];
+    }
+
+    public static function getWidgets(): array
+    {
+        return [
+            CartOverviewWidget::class,
         ];
     }
 

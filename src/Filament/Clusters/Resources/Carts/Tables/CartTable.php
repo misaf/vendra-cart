@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Misaf\VendraCart\Filament\Resources\Carts\Tables;
+namespace Misaf\VendraCart\Filament\Clusters\Resources\Carts\Tables;
 
 use Filament\Actions\ActionGroup;
 use Filament\Actions\BulkActionGroup;

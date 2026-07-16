@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Misaf\VendraCart\Filament\Resources\Carts\Schemas;
+namespace Misaf\VendraCart\Filament\Clusters\Resources\Carts\Schemas;
 
 use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\TextInput;

@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Misaf\VendraCart\Filament\Resources\Carts\Pages;
+namespace Misaf\VendraCart\Filament\Clusters\Resources\Carts\Pages;
 
 use Filament\Actions\DeleteAction;
 use Filament\Resources\Pages\ViewRecord;
-use Misaf\VendraCart\Filament\Resources\Carts\CartResource;
+use Misaf\VendraCart\Filament\Clusters\Resources\Carts\CartResource;
 
 final class ViewCart extends ViewRecord
 {
